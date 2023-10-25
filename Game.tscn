@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://chb7dqwytrl4s"]
+
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_vhx3y"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="2_adeeu"]
+[ext_resource type="Script" path="res://scripts/Deck.gd" id="3_0tenw"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="4_muhlo"]
+[ext_resource type="Script" path="res://scripts/Dealer.gd" id="5_2yvop"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_vhx3y")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("2_adeeu")
+
+[node name="PlayerLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 448.0
+offset_right = 704.0
+offset_bottom = 512.0
+
+[node name="DealerLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 64.0
+offset_right = 704.0
+offset_bottom = 128.0
+
+[node name="DealButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 196.0
+offset_right = 256.0
+offset_bottom = 260.0
+text = "DEAL"
+
+[node name="HitButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 292.0
+offset_right = 256.0
+offset_bottom = 356.0
+text = "HIT"
+
+[node name="StandButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 380.0
+offset_right = 256.0
+offset_bottom = 444.0
+text = "STAND"
+
+[node name="NextButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 64.0
+offset_right = 256.0
+offset_bottom = 128.0
+text = "NEXT"
+
+[node name="QuitButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 512.0
+offset_right = 256.0
+offset_bottom = 576.0
+text = "QUIT"
+
+[node name="DeckNode" type="Node" parent="."]
+script = ExtResource("3_0tenw")
+
+[node name="PlayerNode" type="Node" parent="."]
+script = ExtResource("4_muhlo")
+
+[node name="DealerNode" type="Node" parent="."]
+script = ExtResource("5_2yvop")
+
+[connection signal="pressed" from="UI/DealButton" to="." method="_on_deal_button_pressed"]
+[connection signal="pressed" from="UI/HitButton" to="PlayerNode" method="hit_button_pressed"]
+[connection signal="pressed" from="UI/StandButton" to="DealerNode" method="play_turn"]
+[connection signal="pressed" from="UI/NextButton" to="UI" method="_on_next_button_pressed"]
