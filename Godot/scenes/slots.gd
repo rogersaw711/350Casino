@@ -25,7 +25,7 @@ func _ready():
 	startButton = $startButton
 
 	iconTextures = [
-		preload("res://assets/bar.png"),
+		preload("res://assets/seven.png"),
 		preload("res://assets/bell.jpg"),
 		preload("res://assets/cherry.png"),
 		# Add more icon textures here
@@ -67,7 +67,6 @@ func _startSpinning():
 
 	# Start the Timer to control the animation
 	$SpinningTimer.start()
-
 	# Initialize a list to store the selected icon index for each column
 	var selectedIcons = []
 

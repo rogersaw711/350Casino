@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://6snfwbq7vayg"]
+[gd_scene load_steps=5 format=3 uid="uid://6snfwbq7vayg"]
 
 [ext_resource type="Texture2D" uid="uid://lef1mwetviwi" path="res://assets/slotsBackgroundGOod.png" id="1_8681h"]
 [ext_resource type="Script" path="res://scenes/slots.gd" id="1_ymmo7"]
+[ext_resource type="Texture2D" uid="uid://bjwunyxnbgg8x" path="res://assets/play.jpg" id="3_0nocb"]
+[ext_resource type="Texture2D" uid="uid://o7axb21ray3n" path="res://assets/seven.png" id="3_q7m7x"]
 
 [node name="slots" type="Node2D"]
 script = ExtResource("1_ymmo7")
@@ -20,50 +22,53 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="leftColumn" type="TextureRect" parent="."]
-offset_left = 310.0
-offset_top = 210.0
-offset_right = 462.0
-offset_bottom = 350.0
+offset_left = 232.0
+offset_top = 192.0
+offset_right = 390.0
+offset_bottom = 351.0
+texture = ExtResource("3_q7m7x")
 
 [node name="middleColumn" type="TextureRect" parent="."]
-offset_left = 496.0
-offset_top = 204.0
-offset_right = 630.0
-offset_bottom = 354.0
+offset_left = 464.0
+offset_top = 192.0
+offset_right = 598.0
+offset_bottom = 342.0
+texture = ExtResource("3_q7m7x")
 
 [node name="rightColumn" type="TextureRect" parent="."]
-offset_left = 667.0
-offset_top = 198.0
-offset_right = 831.0
-offset_bottom = 351.0
+offset_left = 696.0
+offset_top = 192.0
+offset_right = 860.0
+offset_bottom = 345.0
+texture = ExtResource("3_q7m7x")
 
 [node name="leftButton" type="Button" parent="."]
-offset_left = 364.0
-offset_top = 364.0
-offset_right = 419.0
-offset_bottom = 395.0
+offset_left = -113.0
+offset_top = 197.0
+offset_right = -58.0
+offset_bottom = 228.0
 text = "STOP"
 
 [node name="middleButton" type="Button" parent="."]
-offset_left = 529.0
-offset_top = 365.0
-offset_right = 584.0
-offset_bottom = 396.0
+offset_left = -119.0
+offset_top = 243.0
+offset_right = -64.0
+offset_bottom = 274.0
 text = "STOP"
 
 [node name="rightButton" type="Button" parent="."]
-offset_left = 714.0
-offset_top = 364.0
-offset_right = 769.0
-offset_bottom = 395.0
+offset_left = -109.0
+offset_top = 300.0
+offset_right = -54.0
+offset_bottom = 331.0
 text = "STOP"
 
 [node name="startButton" type="Button" parent="."]
-offset_left = 1018.0
-offset_top = 435.0
-offset_right = 1098.0
-offset_bottom = 538.0
-text = "Start"
+offset_left = 456.0
+offset_top = 424.0
+offset_right = 636.0
+offset_bottom = 527.0
+icon = ExtResource("3_0nocb")
 
 [node name="SpinningTimer" type="Timer" parent="."]
 

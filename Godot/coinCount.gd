@@ -1,6 +1,6 @@
 extends Node
 
-var coinCount
+var coinCount = 1000
 
 func setCoins(newCoinCount):
 	coinCount = newCoinCount
