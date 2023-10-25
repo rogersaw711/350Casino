@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://6snfwbq7vayg"]
+
+[ext_resource type="Texture2D" uid="uid://lef1mwetviwi" path="res://assets/slotsBackgroundGOod.png" id="1_8681h"]
+[ext_resource type="Script" path="res://scenes/slots.gd" id="1_ymmo7"]
+[ext_resource type="Texture2D" uid="uid://o7axb21ray3n" path="res://assets/seven.png" id="3_q7m7x"]
+[ext_resource type="Texture2D" uid="uid://c8clev51kuyy2" path="res://assets/play.png" id="4_bt7wf"]
+
+[node name="slots" type="Node2D"]
+script = ExtResource("1_ymmo7")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(576, 323.75)
+scale = Vector2(1.152, 1.15391)
+texture = ExtResource("1_8681h")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="leftColumn" type="TextureRect" parent="."]
+offset_left = 232.0
+offset_top = 192.0
+offset_right = 390.0
+offset_bottom = 351.0
+texture = ExtResource("3_q7m7x")
+
+[node name="middleColumn" type="TextureRect" parent="."]
+offset_left = 464.0
+offset_top = 192.0
+offset_right = 598.0
+offset_bottom = 342.0
+texture = ExtResource("3_q7m7x")
+
+[node name="rightColumn" type="TextureRect" parent="."]
+offset_left = 696.0
+offset_top = 192.0
+offset_right = 860.0
+offset_bottom = 345.0
+texture = ExtResource("3_q7m7x")
+
+[node name="leftButton" type="Button" parent="."]
+offset_left = -113.0
+offset_top = 197.0
+offset_right = -58.0
+offset_bottom = 228.0
+text = "STOP"
+
+[node name="middleButton" type="Button" parent="."]
+offset_left = -119.0
+offset_top = 243.0
+offset_right = -64.0
+offset_bottom = 274.0
+text = "STOP"
+
+[node name="rightButton" type="Button" parent="."]
+offset_left = -109.0
+offset_top = 300.0
+offset_right = -54.0
+offset_bottom = 331.0
+text = "STOP"
+
+[node name="startButton" type="Button" parent="."]
+offset_left = 456.0
+offset_top = 424.0
+offset_right = 636.0
+offset_bottom = 527.0
+icon = ExtResource("4_bt7wf")
+
+[node name="SpinningTimer" type="Timer" parent="."]
+
+[node name="coinDisplay" type="LineEdit" parent="."]
+offset_left = 376.0
+offset_top = 24.0
+offset_right = 728.0
+offset_bottom = 80.0
+text = "Coin Coint:"
+editable = false
+
+[connection signal="pressed" from="leftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="middleButton" to="." method="_on_middle_button_pressed"]
+[connection signal="pressed" from="rightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="startButton" to="." method="_startSpinning"]
