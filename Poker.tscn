@@ -1,0 +1,396 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjebn22ahrjus"]
+
+[ext_resource type="Script" path="res://Scripts/Poker.gd" id="1_rc2ga"]
+[ext_resource type="Texture2D" uid="uid://cchecj4vip57t" path="res://card back black.png" id="2_elpep"]
+
+[node name="Poker_table" type="Node2D"]
+position = Vector2(11, 6)
+
+[node name="Pre_deal" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_rc2ga")
+
+[node name="deal_cards" type="Button" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 44.0
+offset_right = 327.0
+offset_bottom = 175.0
+text = "Deal Cards"
+
+[node name="options_menu" type="Button" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 513.0
+offset_right = 197.0
+offset_bottom = 544.0
+text = "Rules"
+
+[node name="Dealer_Card_4" type="TextureRect" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 719.0
+offset_top = 119.0
+offset_right = 811.0
+offset_bottom = 257.0
+texture = ExtResource("2_elpep")
+expand_mode = 1
+
+[node name="Dealer_Card_1" type="TextureRect" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 119.0
+offset_right = 495.0
+offset_bottom = 257.0
+texture = ExtResource("2_elpep")
+expand_mode = 1
+
+[node name="Dealer_Card_3" type="TextureRect" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 613.0
+offset_top = 118.0
+offset_right = 705.0
+offset_bottom = 256.0
+texture = ExtResource("2_elpep")
+expand_mode = 1
+
+[node name="Dealer_Card_5" type="TextureRect" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 824.0
+offset_top = 118.0
+offset_right = 916.0
+offset_bottom = 256.0
+texture = ExtResource("2_elpep")
+expand_mode = 1
+
+[node name="User_Card_2" type="TextureRect" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 449.0
+offset_top = 384.0
+offset_right = 541.0
+offset_bottom = 522.0
+texture = ExtResource("2_elpep")
+expand_mode = 1
+
+[node name="AI_Card_1" type="TextureRect" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 772.0
+offset_top = 389.0
+offset_right = 864.0
+offset_bottom = 527.0
+texture = ExtResource("2_elpep")
+expand_mode = 1
+
+[node name="AI_Card_2" type="TextureRect" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 879.0
+offset_top = 389.0
+offset_right = 971.0
+offset_bottom = 527.0
+texture = ExtResource("2_elpep")
+expand_mode = 1
+
+[node name="User_Card_1" type="TextureRect" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 383.0
+offset_right = 436.0
+offset_bottom = 521.0
+texture = ExtResource("2_elpep")
+expand_mode = 1
+
+[node name="Dealer_Card_2" type="TextureRect" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 119.0
+offset_right = 599.0
+offset_bottom = 257.0
+texture = ExtResource("2_elpep")
+expand_mode = 1
+
+[node name="quit_button" type="Button" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 556.0
+offset_right = 197.0
+offset_bottom = 631.0
+text = "Quit
+"
+
+[node name="Pot_text" type="TextEdit" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 312.0
+offset_right = 222.0
+offset_bottom = 350.0
+text = "Pot: "
+editable = false
+
+[node name="Player_chips_text" type="TextEdit" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 360.0
+offset_right = 221.0
+offset_bottom = 398.0
+text = "Player Chips: "
+editable = false
+
+[node name="Current_bet_text" type="TextEdit" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 409.0
+offset_right = 221.0
+offset_bottom = 447.0
+text = "Current Bet: "
+editable = false
+
+[node name="Current_bet_value" type="Label" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 415.0
+offset_right = 229.0
+offset_bottom = 441.0
+text = "10"
+
+[node name="Pot_value" type="Label" parent="Pre_deal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 2.478
+offset_left = 175.0
+offset_top = 318.0
+offset_right = 185.0
+offset_bottom = 344.0
+text = "0"
+
+[node name="Player_chips_value" type="Label" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 367.0
+offset_right = 220.0
+offset_bottom = 393.0
+text = "500"
+
+[node name="Add_chips" type="Button" parent="Pre_deal"]
+layout_mode = 0
+offset_left = 994.0
+offset_top = 13.0
+offset_right = 1137.0
+offset_bottom = 64.0
+text = "Add 500 Chips"
+
+[node name="Poker_Options" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 112.0
+offset_top = 231.0
+offset_right = 303.0
+offset_bottom = 331.0
+
+[node name="back_button" type="Button" parent="Poker_Options"]
+layout_mode = 0
+offset_left = -75.0
+offset_top = 233.0
+offset_right = 82.0
+offset_bottom = 309.0
+text = "Back"
+
+[node name="rules_text" type="TextEdit" parent="Poker_Options"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = -169.0
+offset_right = 742.0
+offset_bottom = 354.0
+text = "1. Start the hand by clicking the deal cards button, there is a minimum
+10 chip bet to start the game, for now there is a add chips button to play
+after you run out of chips if needed, it must be clicked while there is no
+hand being played.
+
+2. Once the cards are dealt, the bet options, raise, fold, and check are put
+on screen. If you fold the round will end and you lose all the chips you bet,
+if you check you are not changing the value of the pot but the round
+continues, if you do want to bet more change your current bet value and
+click the raise button.
+
+3. Now if you are continuing the round the 4th dealer card will be revealed,
+you will be presented with the same options above.
+
+4. If you are still continuing the 5th dealer hand will be shown and you will
+be given your last chance to fold, raise, or check, after clicking your chosen
+option the winner will be presented, chips distributed, and the cards and
+screen will reset to be able to start a new hand.
+"
+editable = false
+
+[node name="Poker_hands" type="TextEdit" parent="Poker_Options"]
+layout_mode = 0
+offset_left = 759.0
+offset_top = -225.0
+offset_right = 1013.0
+offset_bottom = 406.0
+text = "Best Hand -> Worst Hand
+1. Royal Flush: A,K,QJ,10 
+all the same suit
+2. Straight Flush: Straight 
+with all the same suit
+3. 4 Of A Kind: 4 cards of
+the same rank
+4. Full House: Three cards of
+the same rank, plus 2 cards
+of the same rank
+5. Flush: 5 cards of the same
+suit
+6. Straight: 5 cards in numeric
+order
+7. 3 Of A Kind: 3 cards of the
+same rank
+8. Two Pair: 2 sets of 2 cards
+of the same rank
+9. Pair: 1 set of 2 cards of the
+same rank
+10. High Card: The highest
+value card in your hand, Ace
+is high
+"
+editable = false
+
+[node name="Post_Deal" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 149.997
+offset_top = 340.909
+offset_right = 189.997
+offset_bottom = 380.909
+
+[node name="-10_button" type="Button" parent="Post_Deal"]
+layout_mode = 0
+offset_left = 83.003
+offset_top = 208.091
+offset_right = 180.003
+offset_bottom = 287.091
+text = "-10 Bet"
+
+[node name="+10_button" type="Button" parent="Post_Deal"]
+layout_mode = 0
+offset_left = 186.003
+offset_top = 208.091
+offset_right = 283.003
+offset_bottom = 287.091
+text = "+10 Bet"
+
+[node name="+100_button" type="Button" parent="Post_Deal"]
+layout_mode = 0
+offset_left = 299.003
+offset_top = 209.091
+offset_right = 396.003
+offset_bottom = 288.091
+text = "+100 Bet"
+
+[node name="-100_button2" type="Button" parent="Post_Deal"]
+layout_mode = 0
+offset_left = 406.003
+offset_top = 209.091
+offset_right = 503.003
+offset_bottom = 288.091
+text = "-100 Bet"
+
+[node name="Fold_Button" type="Button" parent="Post_Deal"]
+layout_mode = 0
+offset_left = 405.0
+offset_top = 153.0
+offset_right = 523.0
+offset_bottom = 184.0
+text = "Fold"
+
+[node name="Raise_Button" type="Button" parent="Post_Deal"]
+layout_mode = 0
+offset_left = 405.0
+offset_top = 101.0
+offset_right = 524.0
+offset_bottom = 132.0
+text = "Raise"
+
+[node name="Check_button" type="Button" parent="Post_Deal"]
+layout_mode = 0
+offset_left = 405.003
+offset_top = 51.091
+offset_right = 523.003
+offset_bottom = 82.091
+text = "Check"
+
+[node name="Cards" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Player_Hand" type="TextEdit" parent="Cards"]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 331.0
+offset_right = 498.0
+offset_bottom = 367.0
+text = "Player Hand"
+editable = false
+
+[node name="Comp_Hand" type="TextEdit" parent="Cards"]
+layout_mode = 0
+offset_left = 805.0
+offset_top = 336.0
+offset_right = 945.0
+offset_bottom = 373.0
+text = "Computer Hand"
+editable = false
+
+[node name="Flop" type="TextEdit" parent="Cards"]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 56.0
+offset_right = 749.0
+offset_bottom = 94.0
+text = "Dealer's Hand / Flop"
+editable = false
+
+[node name="Winner_Screen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 589.862
+offset_top = 291.767
+offset_right = 629.862
+offset_bottom = 331.767
+
+[node name="winner_text" type="Label" parent="Winner_Screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 10.147
+anchor_top = -0.897
+anchor_right = 10.147
+anchor_bottom = -0.897
+offset_left = -490.742
+offset_top = 51.1131
+offset_right = -267.742
+offset_bottom = 110.113
+text = "Here the winner is named"
+
+[node name="exit_winner_screen_button" type="Button" parent="Winner_Screen"]
+layout_mode = 0
+offset_left = -75.8624
+offset_top = 61.2331
+offset_right = 103.138
+offset_bottom = 134.233
+text = "Ready For Next Hand?
+		Click Me"
+
+[connection signal="pressed" from="Pre_deal/deal_cards" to="Pre_deal" method="_on_button_pressed"]
+[connection signal="pressed" from="Pre_deal/options_menu" to="Pre_deal" method="_on_options_menu_pressed"]
+[connection signal="pressed" from="Pre_deal/quit_button" to="Pre_deal" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Pre_deal/Add_chips" to="Pre_deal" method="_on_add_chips_pressed"]
+[connection signal="pressed" from="Poker_Options/back_button" to="Pre_deal" method="_on_back_button_pressed"]
+[connection signal="pressed" from="Post_Deal/-10_button" to="Pre_deal" method="_on_minus_10_button_pressed"]
+[connection signal="pressed" from="Post_Deal/+10_button" to="Pre_deal" method="_on_plus_10_button_pressed"]
+[connection signal="pressed" from="Post_Deal/+100_button" to="Pre_deal" method="_on_plus_100_button_pressed"]
+[connection signal="pressed" from="Post_Deal/-100_button2" to="Pre_deal" method="_on_minus_100_button_pressed"]
+[connection signal="pressed" from="Post_Deal/Fold_Button" to="Pre_deal" method="_on_fold_pressed"]
+[connection signal="pressed" from="Post_Deal/Raise_Button" to="Pre_deal" method="_on_raise_button_pressed"]
+[connection signal="pressed" from="Post_Deal/Check_button" to="Pre_deal" method="_on_check_button_pressed"]
