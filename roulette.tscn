@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://dpa42bl5vvan8"]
+
+[ext_resource type="Script" path="res://scripts/Roulette.gd" id="1_rfm4b"]
+[ext_resource type="Texture2D" uid="uid://n6oenjd5j3qi" path="res://assets/roulette_background.png" id="2_7esqx"]
+[ext_resource type="Texture2D" uid="uid://chf2bv81velmw" path="res://assets/roulette_table.png" id="2_ty2xn"]
+[ext_resource type="Texture2D" uid="uid://dkqqkn50ga8kd" path="res://assets/roulette_wheel.png" id="3_fvque"]
+[ext_resource type="Script" path="res://scripts/RouletteTable.gd" id="4_bapae"]
+[ext_resource type="Script" path="res://scripts/RouletteWheel.gd" id="4_yynk3"]
+[ext_resource type="Texture2D" uid="uid://dn7unudeg1j8m" path="res://assets/roulette_ball.png" id="5_lk5fa"]
+[ext_resource type="Script" path="res://scripts/RouletteBall.gd" id="6_4js32"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmv5u"]
+size = Vector2(23.9429, 7.9762)
+
+[node name="Roulette" type="Node2D"]
+script = ExtResource("1_rfm4b")
+
+[node name="RouletteBackground" type="Sprite2D" parent="."]
+position = Vector2(1000, 710)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_7esqx")
+
+[node name="RouletteTable" type="Sprite2D" parent="."]
+position = Vector2(625, 380)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_ty2xn")
+script = ExtResource("4_bapae")
+
+[node name="TableOptions" type="VBoxContainer" parent="RouletteTable"]
+offset_left = 801.0
+offset_top = -331.0
+offset_right = 1070.0
+offset_bottom = 35.0
+
+[node name="Menu" type="Button" parent="RouletteTable/TableOptions"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Menu"
+
+[node name="Options" type="Button" parent="RouletteTable/TableOptions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Options"
+
+[node name="RepeatBets" type="CheckButton" parent="RouletteTable/TableOptions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Repeat Bets"
+
+[node name="BetOptions" type="HBoxContainer" parent="RouletteTable"]
+offset_left = -400.0
+offset_top = 300.0
+offset_right = -212.0
+offset_bottom = 331.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Bet" type="Button" parent="RouletteTable/BetOptions"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Clear"
+
+[node name="Clear" type="Button" parent="RouletteTable/BetOptions"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Bet"
+
+[node name="Spin" type="Button" parent="RouletteTable/BetOptions"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Spin
+"
+
+[node name="TableSquares" type="Area2D" parent="RouletteTable"]
+
+[node name="IndividualNumbers" type="CollisionShape2D" parent="RouletteTable/TableSquares"]
+position = Vector2(266.571, -73.9287)
+scale = Vector2(30, 30)
+shape = SubResource("RectangleShape2D_gmv5u")
+
+[node name="RouletteWheel" type="Sprite2D" parent="."]
+position = Vector2(300, 382)
+scale = Vector2(0.805, 0.805)
+texture = ExtResource("3_fvque")
+script = ExtResource("4_yynk3")
+
+[node name="RouletteBall" type="Sprite2D" parent="RouletteWheel"]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_lk5fa")
+script = ExtResource("6_4js32")
+
+[node name="ResultPopup" type="Label" parent="."]
+offset_left = 200.0
+offset_top = 40.0
+offset_right = 400.0
+offset_bottom = 65.0
+scale = Vector2(4.43946, 4.90435)
+
+[connection signal="pressed" from="RouletteTable/BetOptions/Spin" to="." method="_on_spin_pressed"]
