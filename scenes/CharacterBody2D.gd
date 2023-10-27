@@ -33,18 +33,14 @@ var list = []
 var sum = 0
 
 # Jackpot amount
-var Jackpotamount = 2000
-
-
+var Jackpotamount = 1000
 
 func _ready():
 	set_process_input(true)
 	label.text = ""
+
+
 # Function to initiate spinning the wheel
-"""
-If the wheel is not currently spinning then spin the wheel at a random force 
-between minrotationspeed and maxrotationspeed
-"""
 func _spin():
 	if !spinning:
 		spinning = true
@@ -55,9 +51,6 @@ func _spin():
 		hasPrinted = false
 
 # Function to handle user input
-"""
-If the spacebar is pressed then spin or if the r key is hit then reset wheel
-"""
 func _input(event):
 	if event.is_action_pressed("Spin"):
 		_spin()
@@ -67,12 +60,6 @@ func _input(event):
 		reset_wheel()
 
 # Function to update the wheel's rotation
-"""
-If spinning slow down the wheels spin by the deceleration value * the delta
-rotationSpeed = max(rotationSpeed, 0) makes sure the wheel does not
-spin backwards when wheel stops
-
-"""
 func _process(delta):
 	if spinning:
 		rotationSpeed -= deceleration * delta
@@ -83,28 +70,20 @@ func _process(delta):
 			update_segment()
 
 # Function to determine the current winning segment
-"""
-Cuts the wheel up into segemnts using 8 45 degree segments
-currentSegment is determined by value in a list Jackpot is determined if the 
-arror is pointing at 61 and 73 degrees relative to the wheel.
-Also plays sound when the current segement is updated or if the jackpot is hit
-and it adds up all you winnings
-
-"""
 func update_segment():
 	var rotation = $Wheel.rotation_degrees
 	if rotation < 0:
 		rotation += 360  # Normalize to positive values
 	var segmentIndex = int(rotation / segmentSize) % 8  # 8 segments in total
 	# The currentSegment goes counter-clockwise to give values starting above the arrow
-	currentSegment = [-20, -500, 300, 75, -150, -25, 70, -70][segmentIndex]
+	currentSegment = [200, -250, 300, 75, -150, -25, 100, -50][segmentIndex]
 
 	# Calculate the final normalized rotation (0 to 360 degrees)
 	var finalRotation = fmod(rotation, 360.0)
 
 	# Check if the final rotation is within the specified range (61 to 73 degrees)
-	if finalRotation >= 61.04404 && finalRotation <= 73.2678:
-		currentSegment = Jackpotamount
+	if finalRotation >= 61.0 && finalRotation <= 73.0:
+		currentSegment += Jackpotamount
 		
 	#Adds currentSegment to list
 	list.append(currentSegment)
@@ -130,11 +109,6 @@ func update_segment():
 	$SumLabel.text = "Your Total Winnings: $" + str(sum)
 
 # Function to reset the wheel
-
-"""
-If the rotation speed is 0 and the wheel is not spinning set the rotation speed
-to zero and set the finalroation to the degress that the wheel is at 
-"""
 func reset_wheel():
 	if rotationSpeed == 0:
 		spinning = false

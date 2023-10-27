@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7t80hxon467p"]
+
+[ext_resource type="Script" path="res://scripts/MainMenuScript.gd" id="1_yyqst"]
+
+[node name="Menu" type="Node2D"]
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_yyqst")
+
+[node name="Start_Button" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 704.0
+offset_bottom = 192.0
+text = "Start"
+
+[node name="Options_Button" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 256.0
+offset_right = 704.0
+offset_bottom = 320.0
+text = "Options"
+
+[node name="Quit_Button" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 384.0
+offset_right = 608.0
+offset_bottom = 448.0
+text = "Quit"
+
+[node name="Options" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Back_Button" type="Button" parent="Options"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 384.0
+offset_right = 768.0
+offset_bottom = 448.0
+text = "Back"
+
+[node name="GameSelection" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OptionButton" type="OptionButton" parent="GameSelection"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 64.0
+offset_right = 704.0
+offset_bottom = 128.0
+item_count = 3
+popup/item_0/text = "Spin"
+popup/item_0/id = 0
+popup/item_1/text = "Slots"
+popup/item_1/id = 1
+popup/item_2/text = "Test"
+popup/item_2/id = 2
+
+[node name="Back_Button" type="Button" parent="GameSelection"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 384.0
+offset_right = 768.0
+offset_bottom = 448.0
+text = "Back"
+
+[connection signal="pressed" from="MainMenu/Start_Button" to="MainMenu" method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/Options_Button" to="MainMenu" method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainMenu/Quit_Button" to="MainMenu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Options/Back_Button" to="MainMenu" method="_on_back_button_pressed"]
+[connection signal="item_selected" from="GameSelection/OptionButton" to="MainMenu" method="_on_option_button_item_selected"]
+[connection signal="pressed" from="GameSelection/Back_Button" to="MainMenu" method="_on_back_button_pressed"]
