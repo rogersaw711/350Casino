@@ -50,10 +50,7 @@ func _on_option_button_item_selected(index):
 			# get_tree().change_scene_to_file("res://scenes/name_of_your_game_scene")
 			get_tree().change_scene_to_file("res://scenes/wheel.tscn")
 		1:
-			get_tree().change_scene_to_file("res://scenes/slots.tscn")
+			# get_tree().change_scene_to_file("res://scenes/name_of_your_game_scene")
+			pass
 		2:
-			get_tree().change_scene_to_file("res://scenes/Game.tscn")
-		3:
-			get_tree().change_scene_to_file("res://scenes/Poker.tscn")
-		4:
-			get_tree().change_scene_to_file("res://scenes/roulette.tscn")
+			get_tree().change_scene_to_file("res://scenes/Test.tscn")

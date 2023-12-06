@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c7t80hxon467p"]
 
-[ext_resource type="Script" path="res://scripts/MainMenuScript.gd" id="1_yyqst"]
+[ext_resource type="Script" path="res://scripts/MainMenuScript.gd" id="1_nco5e"]
 
 [node name="Menu" type="Node2D"]
 
@@ -9,7 +9,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_yyqst")
+script = ExtResource("1_nco5e")
 
 [node name="Start_Button" type="Button" parent="MainMenu"]
 layout_mode = 0
@@ -61,17 +61,13 @@ offset_left = 448.0
 offset_top = 64.0
 offset_right = 704.0
 offset_bottom = 128.0
-item_count = 5
+item_count = 3
 popup/item_0/text = "Spin"
 popup/item_0/id = 0
 popup/item_1/text = "Slots"
 popup/item_1/id = 1
-popup/item_2/text = "BlackJack"
+popup/item_2/text = "Test"
 popup/item_2/id = 2
-popup/item_3/text = "Poker"
-popup/item_3/id = 3
-popup/item_4/text = "Roulette"
-popup/item_4/id = 4
 
 [node name="Back_Button" type="Button" parent="GameSelection"]
 layout_mode = 0
