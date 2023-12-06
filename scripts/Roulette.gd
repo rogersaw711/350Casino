@@ -29,6 +29,7 @@ extends Node2D
 ## Author: Nathan Vincent
 ## Date: 10/27/2023
 
+
 @onready
 var wheel = get_node("RouletteWheel")
 @onready
@@ -37,10 +38,28 @@ var ball = get_node("RouletteWheel/RouletteBall")
 var bet_options = get_node("RouletteTable/BetOptions")
 @onready
 var resulting_number_popup = get_node("ResultPopup")
+@onready
+var table = get_node("RouletteTable")
+@onready
+var table_squares = get_node("RouletteTable/TableSquares")
+@onready
+var chip_selection = get_node("RouletteTable/ChipSelection")
+@onready
+var chips_on_table_label = get_node("RouletteTable/ChipsOnTable")
+@onready
+var user_chips_label = get_node("UserChipValue")
 
-# Called once node enters the scene tree
+var allow_bets = false
+var repeat_bets = false
+var output_multiplier = 1
+var chip_count = 1000
+
+# Called once node enters the scene tree for the first time
 func _ready() -> void:
-	pass
+	allow_bets = false
+	hide_chip_selection()
+	_set_user_chips_text()
+	show_user_chips_value()
 
 # Called every frame while 'delta' is elapsed time since previous frame
 func _process(delta: float) -> void:
@@ -62,8 +81,15 @@ func _input(event: InputEvent) -> void:
 # Callback for when the ball stops moving on the roulette wheel
 func _on_ball_stopped(angle_degrees: float) -> void:
 	#Gets the pocket number from the wheel and displays the pocket the ball resides
-	_set_number_result_text(wheel.get_pocket_number(angle_degrees))
+	var ball_position = wheel.get_pocket_number(angle_degrees)
+	_set_number_result_text(ball_position)
 	show_number_result()
+	_determine_payout(ball_position)
+	if repeat_bets:
+		chip_count -= table.current_bet_cost
+		_set_user_chips_text()
+	else:
+		table.clear_bets()
 
 # Called when spin button is clicked
 func _on_spin_pressed() -> void:
@@ -87,7 +113,20 @@ func show_bet_options() -> void:
 # Hides betting options to restrict access during game operations
 func hide_bet_options() -> void:
 	bet_options.visible = false
+	hide_chip_selection()
+	
+func show_chip_selection():
+	chip_selection.visible = true
 
+func hide_chip_selection():
+	chip_selection.visible = false
+	
+func show_user_chips_value():
+	user_chips_label.visible = true
+	
+func hide_user_chips_value():
+	user_chips_label.visible = false
+	
 # Displays pop up text of pocket that ball resides in
 func show_number_result() -> void:
 	resulting_number_popup.visible = true
@@ -99,3 +138,49 @@ func hide_number_result() -> void:
 # Sets the respective text to be displayed for popup showing resting ball position
 func _set_number_result_text(pocket_element: int) -> void:
 	resulting_number_popup.text = "The ball stopped on pocket number: %s." % pocket_to_str(pocket_element)
+	
+func add_to_user_chip_count(payout):
+	chip_count += payout
+	_set_user_chips_text()
+	
+func subtract_from_user_chip_count(chip_value):
+	chip_count -= chip_value
+	_set_user_chips_text()
+
+func _set_user_chips_text():
+	user_chips_label.text = "Value of chips: %d" % chip_count
+	
+func _determine_payout(ball_position):
+	table.apply_payout(ball_position)
+
+func _on_bets_pressed():
+	show_chip_selection()
+
+func _on_table_squares_input_event(viewport, event, shape_idx):
+	if allow_bets:
+		if event is InputEventMouseButton and event.pressed:
+			table.place_bets(viewport, event, shape_idx, output_multiplier, chip_count)
+
+func _on_one_dollar_pressed():
+	allow_bets = true
+	output_multiplier = 1
+
+func _on_five_dollar_pressed():
+	allow_bets = true
+	output_multiplier = 5
+
+func _on_ten_dollar_pressed():
+	allow_bets = true
+	output_multiplier = 10
+
+func _on_clear_pressed():
+	table.clear_bets()
+
+func _on_repeat_bets_pressed():
+	table.clear_bets()
+
+func _on_repeat_bets_toggled(button_pressed):
+	if repeat_bets == false:
+		repeat_bets = true
+	else:
+		repeat_bets = false
