@@ -73,6 +73,7 @@ func play_turn():
 	await get_tree().create_timer(0.5).timeout
 	ui.hit_button.disabled = true
 	ui.stand_button.disabled = true
+	ui.double_button.disabled = true
 	while get_hand_value() < 17:
 		var card = deck.deal_card()
 		add_card(card)
@@ -98,12 +99,12 @@ func play_turn():
 func dealer_bust():
 	print("Dealer Busts, Player Wins!")
 	ui.info_label.text = "Dealer Busts,\nPlayer Wins!"
-	cC.addCoins(game.bet_price * 2)
+	cC.addCoins(game.current_bet * 2)
 	
 func win():
 	print("Player Wins!")
 	ui.info_label.text = "Player Wins!"
-	cC.addCoins(game.bet_price * 2)
+	cC.addCoins(game.current_bet * 2)
 	
 func lose():
 	print("Dealer Wins!")
@@ -112,7 +113,7 @@ func lose():
 func push():
 	print("Push!")
 	ui.info_label.text = "Push!"
-	cC.addCoins(game.bet_price)
+	cC.addCoins(game.current_bet)
 	
 func dealer_reset():
 	hand.clear()

@@ -7,14 +7,20 @@ var d_position_y
 
 var player
 var dealer
+var cC
 
 var hit_button: Button
 var stand_button: Button
+var double_button: Button
 var deal_button: Button
 var next_button: Button
 var quit_button: Button
 
+var bet_box: HBoxContainer
+
+var balance_label: Label
 var info_label: Label
+var bet_amount_label: Label
 
 var back_card
 
@@ -89,18 +95,26 @@ func _ready():
 	d_position_y = 200
 	hit_button = $HitButton
 	stand_button = $StandButton
+	double_button = $DoubleButton
 	deal_button = $DealButton
 	next_button = $NextButton
 	quit_button = $QuitButton
+	balance_label = $ChipBalance
 	info_label = $InfoLabel
+	bet_amount_label = $BetAmount
+	bet_box = $BetBox
 	
 	player = get_node("/root/Node/PlayerNode")
 	dealer = get_node("/root/Node/DealerNode")
+	cC = preload("res://scripts/coinCount.gd")
+	balance_label.text = "Balance: " + str(cC.getCoins())
 	
 	back_card = get_node("/root/Node/back_card")
 	
+	deal_button.disabled = true
 	hit_button.disabled = true
 	stand_button.disabled = true
+	double_button.disabled = true
 	next_button.disabled = true
 	
 
@@ -184,13 +198,17 @@ func reset():
 	p_position_y = 400
 	d_position_x = 500
 	d_position_y = 200
-	deal_button.disabled = false
 	quit_button.disabled = false
 	hit_button.disabled = true
 	stand_button.disabled = true
+	double_button.disabled = true
 	next_button.disabled = true
+	bet_box.visible = true
 	back_card.visible = false
+	balance_label.text = "Balance: " + str(cC.getCoins())
 	info_label.text = ""
+	bet_amount_label.text = ""
+	
 	player.player_reset()
 	dealer.dealer_reset()
 	update_hand_value(player.get_hand_value(), 0)
