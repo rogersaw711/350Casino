@@ -5,6 +5,8 @@ var hand = []
 var deck
 var ui
 var dealer
+var game
+var cC
 
 func _ready():
 	"""
@@ -13,6 +15,8 @@ func _ready():
 	ui = get_node("/root/Node/UI")
 	deck = get_node("/root/Node/DeckNode")
 	dealer = get_node("/root/Node/DealerNode")
+	game = get_node("/root/Node")
+	cC = preload("res://scripts/coinCount.gd")
 	
 func add_card(card):
 	"""
@@ -71,31 +75,53 @@ func hit_button_pressed():
 	
 	Checks if player has busted, if so call the UI script enable_next_button
 	"""
+	ui.double_button.disabled = true
 	# Get a card from the deck
 	var card = deck.deal_card()
-	
-	# Add the card to the player's hand
 	add_card(card)
-	
-	# Update UI to display the new card
 	ui.display_new_card(card, 0)
-	
-	# Update UI to display the hand value
 	ui.update_hand_value(get_hand_value(), 0)
 	
-	
-	# Check if player busts
 	if get_hand_value() > 21:
 		print("BUST!")
 		ui.info_label.text = "Bust!\nDealer Wins"
 		ui.hit_button.disabled = true
 		ui.stand_button.disabled = true
 		ui.enable_next_button()
-		pass
-	else:
-		pass
-		# Player's turn to play, continue
-		
+
+func double_button_pressed():
+	"""
+	When the double button is pressed deal another card to the player
+	
+	Disable the playter from making any more moves,
+	
+	Uses the UI script to display the new player card and the new
+	total value,
+	
+	Checks if player has busted, if so call the UI script enable_next_button
+	"""
+	ui.hit_button.disabled = true
+	ui.stand_button.disabled = true
+	ui.double_button.disabled = true
+	# Get a card from the deck
+	var card = deck.deal_card()
+	add_card(card)
+	ui.display_new_card(card, 0)
+	ui.update_hand_value(get_hand_value(), 0)
+	
+	game.current_bet *= 2
+	cC.addCoins((-game.current_bet / 2))
+	ui.balance_label.text = "Balance: " + str(cC.getCoins())
+	
+	if get_hand_value() > 21:
+		print("BUST!")
+		ui.info_label.text = "Bust!\nDealer Wins"
+		ui.balance_label.text = "Balance: " + str(cC.getCoins())
+		ui.enable_next_button()
+		return
+	
+	dealer.play_turn()
+	
 func player_reset():
 	"""
 	Clears the players hand
