@@ -49,7 +49,7 @@ func get_pocket_number(degrees: float) -> int:
 # Sets a random speed for the wheel's spin
 func _set_random_speed() -> void:
 	#Will adjust speed range accordingly
-	_spin_speed = randf_range(300.0, 700.0)
+	_spin_speed = randf_range(400.0, 800.0)
 
 # Stops the spinning of the wheel
 func _stop_spin() -> void:
@@ -58,4 +58,4 @@ func _stop_spin() -> void:
 # Decrements the wheel's spin speed over time, simulating friction
 func _decrement_speed() -> void:
 	# Will expand function to adjust this value for deceleration speed that isn't linear
-	_spin_speed -= 1
+	_spin_speed -= 1.5

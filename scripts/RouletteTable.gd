@@ -60,6 +60,8 @@ var double_zero_square = get_node("TableSquares/DoubleZero")
 var current_bet_value_label = get_node("TotalBetValue")
 @onready
 var chips_on_table_label = get_node("ChipsOnTable")
+@onready
+var chips_on_table_label_continued = get_node("ChipsOnTableContinued")
 
 var current_bet_cost = 0
 var current_bets_string = ""
@@ -122,92 +124,42 @@ func set_current_bets_string():
 	current_bets_string = ""
 	var string_snippets = []
 	for bet_type in bets_on_table.keys():
-		match bet_type:
-			0:
-				var index_map = {}
-				var string_snippet = ""
-				for number in bets_on_table[0].keys():
-					if not index_map.has(bets_on_table[0][number]):
-						index_map[bets_on_table[0][number]] = [number]
-					else:
-						index_map[bets_on_table[0][number]].append(number)
-				for cost in index_map.keys():
-					string_snippet += "$" + str(cost) + " on "
+		var index_map = {}
+		var string_snippet = ""
+		for number in bets_on_table[bet_type].keys():
+			if not index_map.has(bets_on_table[bet_type][number]):
+				index_map[bets_on_table[bet_type][number]] = [number]
+			else:
+				index_map[bets_on_table[bet_type][number]].append(number)
+		for cost in index_map.keys():
+			string_snippet += "$" + str(cost) + " on "
+			match bet_type:
+				0:
 					for index in index_map[cost]:
 						string_snippet += str(index) + ", "
-				string_snippet += "each with X%d payout." % 35
-				string_snippets.append(string_snippet)
-			1:
-				var index_map = {}
-				var string_snippet = ""
-				for number in bets_on_table[1].keys():
-					if not index_map.has(bets_on_table[1][number]):
-						index_map[bets_on_table[1][number]] = [number]
-					else:
-						index_map[bets_on_table[1][number]].append(number)
-				for cost in index_map.keys():
-					string_snippet += "$" + str(cost) + " on Row "
+					string_snippet += "for X%d payout. " % 35
+				1:
+					string_snippet += "Row "
 					for index in index_map[cost]:
 						string_snippet += str(index + 1) + ", "
-				string_snippet += "each with X%d payout. " % 12
-				string_snippets.append(string_snippet)
-			2:
-				var index_map = {}
-				var string_snippet = ""
-				for number in bets_on_table[2].keys():
-					if not index_map.has(bets_on_table[2][number]):
-						index_map[bets_on_table[2][number]] = [number]
-					else:
-						index_map[bets_on_table[2][number]].append(number)
-				for cost in index_map.keys():
-					string_snippet += "$" + str(cost) + " on "
+					string_snippet += "for X%d payout. " % 3
+				2:
 					for index in index_map[cost]:
 						string_snippet += match_thirds(index) + ", "
-				string_snippet += "each with X%d payout. " % 3
-				string_snippets.append(string_snippet)
-			3:
-				var index_map = {}
-				var string_snippet = ""
-				for number in bets_on_table[3].keys():
-					if not index_map.has(bets_on_table[3][number]):
-						index_map[bets_on_table[3][number]] = [number]
-					else:
-						index_map[bets_on_table[3][number]].append(number)
-				for cost in index_map.keys():
-					string_snippet += "$" + str(cost) + " on "
+					string_snippet += "for X%d payout. " % 3
+				3:
 					for index in index_map[cost]:
 						string_snippet += match_halves(index) + ", "
-				string_snippet += "each with X%d payout. " % 2
-				string_snippets.append(string_snippet)
-			4:
-				var index_map = {}
-				var string_snippet = ""
-				for number in bets_on_table[4].keys():
-					if not index_map.has(bets_on_table[4][number]):
-						index_map[bets_on_table[4][number]] = [number]
-					else:
-						index_map[bets_on_table[4][number]].append(number)
-				for cost in index_map.keys():
-					string_snippet += "$" + str(cost) + " on "
+					string_snippet += "for X%d payout. " % 2
+				4:
 					for index in index_map[cost]:
 						string_snippet += str(index) + ", "
-				string_snippet += "each with X%d payout. " % 35
-				string_snippets.append(string_snippet)
-			5:
-				var index_map = {}
-				var string_snippet = ""
-				for number in bets_on_table[5].keys():
-					if not index_map.has(bets_on_table[5][number]):
-						index_map[bets_on_table[5][number]] = [number]
-					else:
-						index_map[bets_on_table[5][number]].append(number)
-				for cost in index_map.keys():
-					string_snippet += "$" + str(cost) + " on "
+					string_snippet += "for X%d payout. " % 35
+				5:
 					for index in index_map[cost]:
 						string_snippet += str(index) + ", "
-				string_snippet += "each with X%d payout. " % 35
-				string_snippets.append(string_snippet)
-				
+					string_snippet += "for X%d payout. " % 35			
+		string_snippets.append(string_snippet)					
 	for string in string_snippets:
 		current_bets_string += string
 	set_chips_on_table_label()
@@ -219,10 +171,23 @@ func set_current_bets_cost(chip_value):
 	current_bet_value_label.text = "Bets cost: $%d" % current_bet_cost
 	
 func set_chips_on_table_label():
-	if not chips_on_table_label.visible:
-		chips_on_table_label.visible = true
-	chips_on_table_label.text = "Current bets: %s" % current_bets_string
-
+#	if not chips_on_table_label.visible:
+#		chips_on_table_label.visible = true
+	if len(current_bets_string) > 110:
+		for i in range(10):
+			if current_bets_string[i + 100] == " ":
+				chips_on_table_label.text = "Current bets: " + current_bets_string.substr(0, i + 100)
+				chips_on_table_label_continued.text = current_bets_string.substr(i + 100, current_bets_string.length() - (i + 100))
+		if not chips_on_table_label.visible:
+			chips_on_table_label.visible = true
+			chips_on_table_label_continued.visible = true
+	else:
+		chips_on_table_label.text = "Current bets:" + current_bets_string
+		if not chips_on_table_label.visible:
+			chips_on_table_label.visible = true
+			if chips_on_table_label_continued.visible:
+				chips_on_table_label_continued.visible = false
+			
 func match_thirds(column):
 	if column == 0:
 		return "1 - 12"
@@ -328,10 +293,6 @@ func apply_payout(ball_position):
 				_single_zero_payout(ball_position)
 			5:
 				_double_zero_payout(ball_position)
-				
-#	var bets = []
-#	for bet in bets_on_table.keys():
-#		bets.append(bet)
 
 func _individual_numbers_payout(ball_position):
 	var reward = 0
@@ -346,17 +307,17 @@ func _two_to_one_payout(ball_position):
 	if ball_position in top_number_row:
 		for bet_group in bets_on_table[1].keys():
 			if bet_group == 0:
-				reward += (bets_on_table[1][bet_group] * 12)
+				reward += (bets_on_table[1][bet_group] * 3)
 				break
 	elif ball_position in middle_number_row:
 		for bet_group in bets_on_table[1].keys():
 			if bet_group == 1:
-				reward += (bets_on_table[1][bet_group] * 12)
+				reward += (bets_on_table[1][bet_group] * 3)
 				break
 	elif ball_position in bottom_number_row:
 		for bet_group in bets_on_table[1].keys():
 			if bet_group == 2:
-				reward += (bets_on_table[1][bet_group] * 12)
+				reward += (bets_on_table[1][bet_group] * 3)
 				break
 	_add_to_user_chip_count(reward)
 	
@@ -365,17 +326,17 @@ func _thirds_payout(ball_position):
 	if ball_position in first_twelve:
 		for bet_group in bets_on_table[2].keys():
 			if bet_group == 0:
-				reward += (bets_on_table[2][bet_group] * 12)
+				reward += (bets_on_table[2][bet_group] * 3)
 				break
 	elif ball_position in middle_number_row:
 		for bet_group in bets_on_table[2].keys():
 			if bet_group == 1:
-				reward += (bets_on_table[2][bet_group] * 12)
+				reward += (bets_on_table[2][bet_group] * 3)
 				break
 	elif ball_position in bottom_number_row:
 		for bet_group in bets_on_table[2].keys():
 			if bet_group == 2:
-				reward += (bets_on_table[2][bet_group] * 12)
+				reward += (bets_on_table[2][bet_group] * 3)
 				break
 	_add_to_user_chip_count(reward)
 	
@@ -385,32 +346,32 @@ func _halves_variants_payout(ball_position):
 	if ball_position in first_half:
 		for bet_group in bets_on_table[3].keys():
 			if bet_group == 0:
-				reward += (bets_on_table[3][bet_group] * 12)
+				reward += (bets_on_table[3][bet_group] * 2)
 				break
 	elif ball_position in even_numbers:
 		for bet_group in bets_on_table[3].keys():
 			if bet_group == 1:
-				reward += (bets_on_table[3][bet_group] * 12)
+				reward += (bets_on_table[3][bet_group] * 2)
 				break
 	elif ball_position in RED_NUMBERS:
 		for bet_group in bets_on_table[3].keys():
 			if bet_group == 2:
-				reward += (bets_on_table[3][bet_group] * 12)
+				reward += (bets_on_table[3][bet_group] * 2)
 				break
 	elif ball_position in BLACK_NUMBERS:
 		for bet_group in bets_on_table[3].keys():
 			if bet_group == 3:
-				reward += (bets_on_table[3][bet_group] * 12)
+				reward += (bets_on_table[3][bet_group] * 2)
 				break
 	elif ball_position in odd_numbers:
 		for bet_group in bets_on_table[3].keys():
 			if bet_group == 4:
-				reward += (bets_on_table[3][bet_group] * 12)
+				reward += (bets_on_table[3][bet_group] * 2)
 				break
 	elif ball_position in second_half:
 		for bet_group in bets_on_table[3].keys():
 			if bet_group == 5:
-				reward += (bets_on_table[3][bet_group] * 12)
+				reward += (bets_on_table[3][bet_group] * 2)
 				break
 	_add_to_user_chip_count(reward)
 
@@ -428,6 +389,7 @@ func _double_zero_payout(ball_position):
 
 func _add_to_user_chip_count(payout):
 	get_parent().add_to_user_chip_count(payout)
+	
 func _subtract_from_chip_count(chip_value):
 	get_parent().subtract_from_user_chip_count(chip_value)
 	
@@ -436,3 +398,4 @@ func clear_bets():
 	current_bet_cost = 0
 	current_bet_value_label.text = ""
 	chips_on_table_label.text = ""
+	chips_on_table_label_continued.text = ""
