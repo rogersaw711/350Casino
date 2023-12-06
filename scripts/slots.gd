@@ -1,3 +1,4 @@
+
 extends Node2D
 
 var iconTextures : Array
@@ -28,7 +29,7 @@ func _ready():
 
 	currentIconIndices = [0, 0, 0]
 
-func _startSpinning():
+func _startSpinning(testing = false, first = null, second = null, third = null):
 	"""
 	Starts the spinning of the slot columns, though this removes 50 chips from the count.
 	The user cannot play if they do not have 50 chips to bet.
@@ -43,14 +44,9 @@ func _startSpinning():
 		Three Sevens - 200 Chips
 		Bars are worth nothing, regardless of how many there are.
 	"""
-	leftSpinning = true
-	middleSpinning = true
-	rightSpinning = true
 	if coinCount.coinCount < 50:
 		return
 	coinCount.addCoins(-50)
-	# Start the Timer to control the animation
-	# Initialize a list to store the selected icon index for each column
 	var selectedIcons = []
 	var cherryCount = 0
 	var bellCount = 0
@@ -59,14 +55,22 @@ func _startSpinning():
 	for i in range(3):
 		# Randomly select an icon index for each column
 		var iconIndex = randi() % iconTextures.size()
-		selectedIcons.append(iconIndex)
+		if testing:
+			match i:
+				0:
+					iconIndex = first
+				1:
+					iconIndex = second
+				2:
+					iconIndex = third
+		else:
+			selectedIcons.append(iconIndex)
 		if iconIndex == 0:
 			cherryCount += 1
 		if iconIndex == 1:
 			sevenCount += 1
 		if iconIndex == 2:
 			bellCount += 1
-		# Initialize the column with the selected icon
 		match i:
 			0:
 				leftColumn.texture = iconTextures[iconIndex]
@@ -75,7 +79,6 @@ func _startSpinning():
 			2:
 				rightColumn.texture = iconTextures[iconIndex]
 
-	# Pass the selected icon indices to the Timer's `userdata` property
 	if bellCount == 2: 
 		coinCount.addCoins(100)
 	if bellCount == 3:
@@ -90,3 +93,41 @@ func _startSpinning():
 		coinCount.addCoins(75)
 	
 	coinDisplay.text = "Coin Count: " + str(coinCount.coinCount)
+
+func tests():
+	var countBefore = coinCount.coinCount - 50
+	_startSpinning(true, 0, 0, 0)
+	if coinCount.coinCount != countBefore + 75:
+		return false
+	countBefore = coinCount.coinCount - 50
+	_startSpinning(true, 0, 3, 3)
+	if coinCount.coinCount != countBefore + 50:
+		return false
+	countBefore = coinCount.coinCount - 50
+	_startSpinning(true, 0, 0, 3)
+	if coinCount.coinCount != countBefore + 25:
+		return false
+	countBefore = coinCount.coinCount - 50
+	_startSpinning(true, 3, 2, 2)
+	if coinCount.coinCount != countBefore + 100:
+		return false
+	countBefore = coinCount.coinCount - 50
+	_startSpinning(true, 2, 2, 2)
+	if coinCount.coinCount != countBefore + 150:
+		return false
+	countBefore = coinCount.coinCount - 50
+	_startSpinning(true, 1, 1, 1)
+	if coinCount.coinCount != countBefore + 200:
+		return false
+	countBefore = coinCount.coinCount - 50
+	_startSpinning(true, 3, 3, 3)
+	if coinCount.coinCount != countBefore:
+		return false
+	countBefore = coinCount.coinCount - 50
+	_startSpinning(true, 1, 1, 2)
+	if coinCount.coinCount != countBefore:
+		return false
+	return true
+
+func _on_back_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/Menu.tscn")
