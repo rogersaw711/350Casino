@@ -1,82 +1,393 @@
 [gd_scene load_steps=7 format=3 uid="uid://k85xxf5tmtr1"]
 
-[ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_q3mbx"]
-[ext_resource type="Texture2D" uid="uid://bqa3h4dc7r5u6" path="res://assets/Wheel_with_jackpot.png.png" id="2_6io3b"]
-[ext_resource type="Texture2D" uid="uid://cdg4qnkfxqm3g" path="res://assets/Short_left_arrow_-_red.png" id="3_000af"]
-[ext_resource type="AudioStream" uid="uid://b5uoud20e7r2t" path="res://audio/BASIC_WIN.wav" id="3_lf0hj"]
-[ext_resource type="AudioStream" uid="uid://2gwedpfjm5v7" path="res://audio/JACKPOT.mp3" id="4_nww2i"]
-[ext_resource type="Texture2D" uid="uid://dki6yubdypm8p" path="res://assets/gambling-background-8752118.webp" id="6_wnikv"]
+[ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_jo0w3"]
+[ext_resource type="Texture2D" uid="uid://w4sdtohxv3jr" path="res://Images/image (2).png" id="2_u0hm8"]
+[ext_resource type="AudioStream" uid="uid://cr84kn2cbq2tu" path="res://Audio/BASIC_WIN.wav" id="3_0t8c2"]
+[ext_resource type="Texture2D" uid="uid://qdn2ug52m4aj" path="res://Images/download (4).png" id="3_84u2h"]
+[ext_resource type="AudioStream" uid="uid://b16ioktepwdsi" path="res://Audio/JACKPOT.mp3" id="4_ct6ro"]
+[ext_resource type="Texture2D" uid="uid://b2akuy7gjem23" path="res://Images/spin the wheel holde (2).jpg" id="4_swpf0"]
 
 [node name="Wheel" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("1_q3mbx")
+script = ExtResource("1_jo0w3")
 
 [node name="Wheel" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(595, 322)
-scale = Vector2(1.32911, 1.32911)
-texture = ExtResource("2_6io3b")
+position = Vector2(543.083, 334.309)
+scale = Vector2(0.521355, 0.521355)
+texture = ExtResource("2_u0hm8")
 centered = false
-offset = Vector2(-731.18, -596.98)
+offset = Vector2(-679.16, -685.405)
+
+[node name="Label1" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = 54.0
+offset_top = -586.0
+offset_right = 62.0
+offset_bottom = -189.0
+rotation = 0.0959931
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+
+[node name="Label2" type="Label" parent="CharacterBody2D/Wheel"]
+anchors_preset = -1
+anchor_left = -0.000335053
+anchor_top = -0.000113658
+anchor_right = -0.000335053
+anchor_bottom = 0.244021
+offset_left = 206.455
+offset_top = -549.845
+offset_right = 240.455
+offset_bottom = -398.845
+rotation = 0.383972
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = 347.11
+offset_top = -470.095
+offset_right = 361.11
+offset_bottom = -158.095
+rotation = 0.649262
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label4" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = 458.79
+offset_top = -371.93
+offset_right = 491.79
+offset_bottom = -43.93
+rotation = 0.937242
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label5" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = 537.945
+offset_top = -243.69
+offset_right = 563.945
+offset_bottom = 129.31
+rotation = 1.15541
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label6" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = 598.0
+offset_top = 55.0
+offset_right = 624.0
+offset_bottom = 446.0
+rotation = 1.69646
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label7" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = 551.0
+offset_top = 210.0
+offset_right = 579.0
+offset_bottom = 588.0
+rotation = 1.95826
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+text = "
+"
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label8" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = 484.0
+offset_top = 342.0
+offset_right = 512.0
+offset_bottom = 667.0
+rotation = 2.22006
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label9" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = 361.0
+offset_top = 466.0
+offset_right = 384.0
+offset_bottom = 885.0
+rotation = 2.52549
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label10" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = 245.0
+offset_top = 539.0
+offset_right = 277.0
+offset_bottom = 997.0
+rotation = 2.76635
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label11" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = 102.0
+offset_top = 582.0
+offset_right = 145.0
+offset_bottom = 989.0
+rotation = 3.04036
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label12" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = -42.0
+offset_top = 594.0
+offset_right = 10.0
+offset_bottom = 1016.0
+rotation = 3.26028
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label13" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = -216.0
+offset_top = 578.0
+offset_right = -176.0
+offset_bottom = 916.0
+rotation = 3.5692
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label14" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = -363.0
+offset_top = 494.0
+offset_right = -330.0
+offset_bottom = 1014.0
+rotation = 3.8118
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label15" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = -547.0
+offset_top = 271.0
+offset_right = -493.0
+offset_bottom = 684.0
+rotation = 4.30049
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label16" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = -606.0
+offset_top = 112.0
+offset_right = -550.0
+offset_bottom = 648.0
+rotation = 4.57625
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label17" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = -603.0
+offset_top = -71.0
+offset_right = -593.0
+offset_bottom = 434.0
+rotation = 4.83282
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label18" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = -564.0
+offset_top = -209.0
+offset_right = -541.0
+offset_bottom = 270.0
+rotation = 5.07193
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label19" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = -484.0
+offset_top = -342.0
+offset_right = -463.0
+offset_bottom = 138.0
+rotation = 5.3442
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label20" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = -373.0
+offset_top = -473.0
+offset_right = -358.0
+offset_bottom = 60.0
+rotation = 5.63567
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label21" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = -249.0
+offset_top = -558.0
+offset_right = -228.0
+offset_bottom = -18.0
+rotation = 5.87478
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Labelarrow" type="Label" parent="CharacterBody2D/Wheel"]
+offset_left = 591.0
+offset_top = -87.0
+offset_right = 605.0
+offset_bottom = 225.0
+rotation = 1.43641
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 60
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LabelJackpot" type="Label" parent="CharacterBody2D/Wheel"]
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="CharacterBody2D"]
-offset_left = 24.0
-offset_top = -141.0
-offset_right = 953.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 68
+offset_left = 251.135
+offset_top = -42.465
+offset_right = 1213.14
+offset_bottom = 64.535
+theme_override_font_sizes/font_size = 43
+metadata/_edit_use_anchors_ = true
 
 [node name="ResetButton" type="Button" parent="CharacterBody2D"]
-offset_left = 994.0
-offset_top = -12.0
-offset_right = 1200.0
-offset_bottom = 127.0
+offset_left = 846.0
+offset_top = 71.0
+offset_right = 1052.0
+offset_bottom = 210.0
 focus_mode = 0
 text = "Reset
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="SpinButton" type="Button" parent="CharacterBody2D"]
-offset_left = -70.0
-offset_top = 16.0
-offset_right = 188.0
-offset_bottom = 152.0
+offset_left = -72.295
+offset_top = 141.245
+offset_right = 185.705
+offset_bottom = 277.245
 text = "Spin"
+metadata/_edit_use_anchors_ = true
 
 [node name="SumLabel" type="Label" parent="CharacterBody2D"]
-offset_left = 1085.0
-offset_top = 365.0
-offset_right = 1320.0
-offset_bottom = 507.0
-theme_override_font_sizes/font_size = 35
+offset_left = 844.87
+offset_top = 389.0
+offset_right = 1079.87
+offset_bottom = 441.24
+theme_override_font_sizes/font_size = 20
+metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CharacterBody2D"]
-stream = ExtResource("3_lf0hj")
+stream = ExtResource("3_0t8c2")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="CharacterBody2D"]
-stream = ExtResource("4_nww2i")
+stream = ExtResource("4_ct6ro")
 
 [node name="BackButton" type="Button" parent="CharacterBody2D"]
-offset_left = 1074.0
-offset_top = 513.0
-offset_right = 1253.0
-offset_bottom = 661.0
+offset_left = 856.0
+offset_top = 445.0
+offset_right = 1035.0
+offset_bottom = 593.0
 text = "Back to Menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="BackGroundMusic" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+volume_db = -12.291
+
+[node name="LineEdit" type="LineEdit" parent="CharacterBody2D"]
+offset_left = 168.05
+offset_top = 644.83
+offset_right = 292.07
+offset_bottom = 690.83
+theme_override_font_sizes/font_size = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="Bet" type="Label" parent="CharacterBody2D"]
+offset_left = 726.745
+offset_top = 625.135
+offset_right = 1160.29
+offset_bottom = 780.4
+theme_override_colors/font_color = Color(0.733333, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="lab1" type="Label" parent="CharacterBody2D"]
+offset_left = 0.005
+offset_top = 639.0
+offset_right = 177.005
+offset_bottom = 712.0
+theme_override_font_sizes/font_size = 35
+text = "Enter Bet:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="CharacterBody2D"]
+offset_left = 366.0
+offset_top = 635.0
+offset_right = 694.0
+offset_bottom = 864.0
+theme_override_colors/font_color = Color(1, 0.960784, 0, 1)
+theme_override_font_sizes/font_size = 136
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coincount" type="Label" parent="CharacterBody2D"]
+offset_left = 28.0
+offset_top = 20.0
+offset_right = 238.0
+offset_bottom = 122.0
+theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
+theme_override_font_sizes/font_size = 25
 
 [node name="Arrow" type="Sprite2D" parent="."]
-position = Vector2(1112.46, 324.2)
-scale = Vector2(0.161182, 0.159236)
-texture = ExtResource("3_000af")
+position = Vector2(992.635, 328.643)
+scale = Vector2(1.26667, 0.701222)
+texture = ExtResource("3_84u2h")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -4096
-position = Vector2(731.08, 358.75)
-scale = Vector2(3.54252, 3.06565)
-texture = ExtResource("6_wnikv")
+position = Vector2(461, 445)
+scale = Vector2(1.50595, 1.38281)
+texture = ExtResource("4_swpf0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(578, 324)
-zoom = Vector2(0.6, 0.6)
+position = Vector2(523.215, 440.305)
+zoom = Vector2(0.645, 0.645)
 
 [connection signal="pressed" from="CharacterBody2D/ResetButton" to="CharacterBody2D" method="_on_reset_button_pressed"]
 [connection signal="pressed" from="CharacterBody2D/SpinButton" to="CharacterBody2D" method="_on_spin_button_pressed"]
 [connection signal="pressed" from="CharacterBody2D/BackButton" to="CharacterBody2D" method="_on_back_button_pressed"]
+[connection signal="text_changed" from="CharacterBody2D/LineEdit" to="CharacterBody2D" method="_on_line_edit_text_changed"]
