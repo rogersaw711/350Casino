@@ -56,6 +56,7 @@ var chip_count = 1000
 
 # Called once node enters the scene tree for the first time
 func _ready() -> void:
+	ball.visible = false
 	allow_bets = false
 	hide_chip_selection()
 	_set_user_chips_text()
@@ -97,6 +98,8 @@ func _on_spin_pressed() -> void:
 		hide_number_result()
 		wheel.start_spin()
 		ball.start_spin(wheel.global_position)
+		if not ball.visible:
+			ball.visible = true
 
 # Converts pocket number to string
 func pocket_to_str(pocket_element: int) -> String:
@@ -174,13 +177,12 @@ func _on_ten_dollar_pressed():
 	output_multiplier = 10
 
 func _on_clear_pressed():
-	table.clear_bets()
-
-func _on_repeat_bets_pressed():
+	chip_count += table.current_bet_cost
+	_set_user_chips_text()
 	table.clear_bets()
 
 func _on_repeat_bets_toggled(button_pressed):
-	if repeat_bets == false:
+	if not repeat_bets:
 		repeat_bets = true
 	else:
 		repeat_bets = false

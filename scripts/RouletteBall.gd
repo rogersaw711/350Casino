@@ -55,7 +55,7 @@ func get_position_from_rotation(rotation_deg: float) -> Vector2:
 
 # Sets a random speed for the ball
 func _set_random_speed() -> void:
-	_ball_speed = randf_range(450.0, 650.0) # Will adjust accordingly
+	_ball_speed = randf_range(400.0, 850.0) # Will adjust accordingly
 	
 # Sets the wheels center position
 func _set_wheel_center(center_position: Vector2) -> void:
@@ -68,5 +68,5 @@ func _stop_spin() -> void:
 # Decrements the ball's speed over time to simulate friction
 func _decrement_speed() -> void:
 	# This function can be adjusted to change how quickly the ball slows
-	_ball_speed -= 1.5
+	_ball_speed -= 1.25
 
