@@ -1,0 +1,179 @@
+[gd_scene load_steps=7 format=3 uid="uid://chb7dqwytrl4s"]
+
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_vhx3y"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="2_adeeu"]
+[ext_resource type="Script" path="res://scripts/Deck.gd" id="3_0tenw"]
+[ext_resource type="Texture2D" uid="uid://c1blhdf4mlp4v" path="res://assets/card back black.png" id="3_6tra5"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="4_muhlo"]
+[ext_resource type="Script" path="res://scripts/Dealer.gd" id="5_2yvop"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_vhx3y")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("2_adeeu")
+
+[node name="ChipBalance" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 960.0
+offset_right = 1152.0
+offset_bottom = 64.0
+text = "Balance: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 128.0
+offset_right = 1024.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+
+[node name="PlayerLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 456.0
+offset_right = 704.0
+offset_bottom = 512.0
+theme_override_font_sizes/font_size = 15
+
+[node name="DealerLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 80.0
+offset_right = 704.0
+offset_bottom = 144.0
+theme_override_font_sizes/font_size = 15
+vertical_alignment = 2
+
+[node name="DealButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 160.0
+offset_right = 256.0
+offset_bottom = 224.0
+text = "DEAL"
+
+[node name="HitButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 249.0
+offset_right = 256.0
+offset_bottom = 313.0
+text = "HIT"
+
+[node name="StandButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 336.0
+offset_right = 256.0
+offset_bottom = 400.0
+text = "STAND"
+
+[node name="DoubleButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 424.0
+offset_right = 256.0
+offset_bottom = 488.0
+text = "DOUBLE"
+
+[node name="NextButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 64.0
+offset_right = 256.0
+offset_bottom = 128.0
+text = "NEXT"
+
+[node name="QuitButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 520.0
+offset_right = 256.0
+offset_bottom = 584.0
+text = "QUIT"
+
+[node name="BetAmount" type="Label" parent="UI"]
+layout_mode = 2
+offset_left = 448.0
+offset_top = 480.0
+offset_right = 704.0
+offset_bottom = 544.0
+theme_override_font_sizes/font_size = 25
+text = "Bet Amount: 500"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BetBox" type="HBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 544.0
+offset_right = 832.0
+offset_bottom = 608.0
+theme_override_constants/separation = 5
+
+[node name="Bet_50" type="Button" parent="UI/BetBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "50"
+
+[node name="Bet_100" type="Button" parent="UI/BetBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "100"
+
+[node name="Bet_250" type="Button" parent="UI/BetBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "250"
+
+[node name="Bet_500" type="Button" parent="UI/BetBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "500"
+
+[node name="Bet_1000" type="Button" parent="UI/BetBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1000"
+
+[node name="Bet_2500" type="Button" parent="UI/BetBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2500"
+
+[node name="DeckNode" type="Node" parent="."]
+script = ExtResource("3_0tenw")
+
+[node name="PlayerNode" type="Node" parent="."]
+script = ExtResource("4_muhlo")
+
+[node name="DealerNode" type="Node" parent="."]
+script = ExtResource("5_2yvop")
+
+[node name="back_card" type="TextureRect" parent="."]
+offset_left = 491.0
+offset_top = 151.0
+offset_right = 550.0
+offset_bottom = 249.0
+texture = ExtResource("3_6tra5")
+expand_mode = 1
+
+[connection signal="pressed" from="UI/DealButton" to="." method="_on_deal_button_pressed"]
+[connection signal="pressed" from="UI/HitButton" to="PlayerNode" method="hit_button_pressed"]
+[connection signal="pressed" from="UI/StandButton" to="DealerNode" method="play_turn"]
+[connection signal="pressed" from="UI/DoubleButton" to="PlayerNode" method="double_button_pressed"]
+[connection signal="pressed" from="UI/NextButton" to="UI" method="_on_next_button_pressed"]
+[connection signal="pressed" from="UI/BetBox/Bet_50" to="." method="_placeing_bets" binds= [50]]
+[connection signal="pressed" from="UI/BetBox/Bet_100" to="." method="_placeing_bets" binds= [100]]
+[connection signal="pressed" from="UI/BetBox/Bet_250" to="." method="_placeing_bets" binds= [250]]
+[connection signal="pressed" from="UI/BetBox/Bet_500" to="." method="_placeing_bets" binds= [500]]
+[connection signal="pressed" from="UI/BetBox/Bet_1000" to="." method="_placeing_bets" binds= [1000]]
+[connection signal="pressed" from="UI/BetBox/Bet_2500" to="." method="_placeing_bets" binds= [2500]]
